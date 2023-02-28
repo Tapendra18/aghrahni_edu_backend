@@ -1,7 +1,7 @@
 const courseModel = require("../models/courseModel");
 const liveController = {};
 
-liveController.coursePost = async function (req, res) {
+liveController.courseAdd = async function (req, res) {
     try {
         const course = new courseModel(req.body);
         await course.save();
@@ -17,7 +17,7 @@ liveController.coursePost = async function (req, res) {
     }
 }
 
-liveController.courseGet = async function (req, res) {
+liveController.courselist = async function (req, res) {
     try {
         const course = await courseModel.find();
         return res.status(200).send({

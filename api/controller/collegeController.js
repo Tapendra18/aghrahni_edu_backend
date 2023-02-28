@@ -1,7 +1,7 @@
 const collegeModel = require("../models/collegeModel");
 const liveController = {};
 
-liveController.collegePost = async function (req, res) {
+liveController.collegeAdd = async function (req, res) {
     try {
         if (req.files.image) {
             req.body.image = req.files.image[0].path
@@ -21,7 +21,7 @@ liveController.collegePost = async function (req, res) {
     }
 };
 
-liveController.collegeGet = async function (req, res) {
+liveController.collegelist = async function (req, res) {
     try {
         const college = await collegeModel.find();
         return res.status(200).send({

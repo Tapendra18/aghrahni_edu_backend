@@ -16,8 +16,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/college", upload.fields([{ name: "image", maxCount: 1 }]), collegeController.collegePost);
-router.get("/college", collegeController.collegeGet);
+router.post("/add", upload.fields([{ name: "image", maxCount: 1 }]), collegeController.collegeAdd);
+router.get("/", collegeController.collegelist);
 router.patch("/college/:id", collegeController.collegeEdit);
 router.delete("/college/:id" , collegeController.CollegeDelete);
 

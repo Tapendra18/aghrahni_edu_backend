@@ -1,7 +1,7 @@
 const enquiryModel = require("../models/enquiryModel");
 const liveController = {};
 
-liveController.enquiryPost = async function (req, res) {
+liveController.enquiryAdd = async function (req, res) {
     try {
         const enquiry = enquiryModel(req.body)
         await enquiry.save();
@@ -17,7 +17,7 @@ liveController.enquiryPost = async function (req, res) {
     }
 }
 
-liveController.courseGet = async function (req, res) {
+liveController.courseList = async function (req, res) {
     try {
         const enquiry = await enquiryModel.find();
         return res.status(200).send({
