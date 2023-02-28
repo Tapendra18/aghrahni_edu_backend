@@ -26,3 +26,33 @@ exports.userRegister = async(req , res) =>{
         res.status(400).json({err :"Invalid Details" + err})
     }
 }
+
+exports.userlogin = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        res.status(400).json({ error: "Please Enter All Input " });
+    }
+
+    try {
+
+        const exitinguser = await users.findOne({email :req.body.email});
+
+        if (exitinguser) {
+            const matchpassword = await bcrypt.compare(password, exitinguser.password);
+
+            if (!matchpassword) {
+                return res.status(400).json({ message: "invalid credential" })
+            }
+
+            const token = jwt.sign({ email: exitinguser.email, id: exitinguser._id }, SECRET_KEY);
+            res.status(201).json({ user: exitinguser, token: token });
+
+        } else {
+            res.status(404).json({ error: "user not found" })
+        }
+        
+    } catch (err) {
+        res.status(401).send({ err: 'Incorrect email or password' });
+    }
+}
