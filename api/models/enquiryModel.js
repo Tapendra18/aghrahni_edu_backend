@@ -4,12 +4,12 @@ const validator = require("validator");
 
 const enquiry = new mongoose.Schema({
     college: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'college'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'college'
     },
     course: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'course'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'course'
     },
     name: {
         type: String,
@@ -17,11 +17,9 @@ const enquiry = new mongoose.Schema({
     },
     fathername: {
         type: String,
-        required: true
     },
     dob: {
         type: String,
-        required: true
     },
     mobileno: {
         type: Number,
@@ -38,15 +36,14 @@ const enquiry = new mongoose.Schema({
     },
     collegename: {
         type: String,
-        required: true
+        
     },
     coursename: {
         type: String,
-        required: true
+       
     },
     alternateno: {
         type: Number,
-        required: true
     },
     status: {
         type: String,
@@ -54,8 +51,8 @@ const enquiry = new mongoose.Schema({
         default: "Active"
     },
 
-} ,{
-    timestamps:true
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model("enquiry", enquiry);

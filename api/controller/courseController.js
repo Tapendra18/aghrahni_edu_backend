@@ -3,7 +3,7 @@ const liveController = {};
 
 liveController.coursePost = async function (req, res) {
     try {
-        const course = courseModel(req.body);
+        const course = new courseModel(req.body);
         await course.save();
         return res.status(200).send({
             success: true,
@@ -12,7 +12,7 @@ liveController.coursePost = async function (req, res) {
     } catch (err) {
         return res.status(500).send({
             success: false,
-            msg: err
+            msg: err + "error in api"
         })
     }
 }
