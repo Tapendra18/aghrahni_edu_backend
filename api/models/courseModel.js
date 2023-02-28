@@ -5,28 +5,22 @@ const course = new mongoose.Schema({
         type: String,
         required: true
     },
-    fathername: {
-        type: String
-    },
-    dob: {
-        type: String
-    },
-    mobileno: {
+    address: {
         type: String,
         required: true
     },
-    email: {
+    image: {
         type: String,
+        required: true
     },
-    collegename: {
-        type: String
-    },
-    schoolname: {
-        type: String
+    website: {
+        type: String,
+        required: true
     }
     ,
-    alternateno: {
-        type: String
+    slug: {
+        type: String,
+        slug: "name"
     },
     status: {
         type: String,
