@@ -3,6 +3,14 @@ const validator = require("validator");
 
 
 const enquiry = new mongoose.Schema({
+    college: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'college'
+    },
+    course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'course'
+    },
     name: {
         type: String,
         required: true

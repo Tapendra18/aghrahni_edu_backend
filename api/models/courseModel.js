@@ -5,19 +5,6 @@ const course = new mongoose.Schema({
         type: String,
         required: true
     },
-    address: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    },
-    website: {
-        type: String,
-        required: true
-    }
-    ,
     slug: {
         type: String,
         slug: "name"
