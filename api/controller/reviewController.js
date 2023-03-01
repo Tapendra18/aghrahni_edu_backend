@@ -3,7 +3,9 @@ const liveController = {};
 
 liveController.reviewAdd = async function (req, res) {
     try {
-        
+        if (req.files.image) {
+            req.body.image = req.files.image[0].path
+        }
 
             const review = new reviewModel(req.body);
             await review.save();
