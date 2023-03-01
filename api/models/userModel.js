@@ -26,6 +26,10 @@ const userModel = new mongoose.Schema({
         required: [true, "Enter password"],
         minlength: 6
     },
+    token: {
+        type: String,
+        default: ''
+    },
     slug: {
         type: String,
         slug: "title"
@@ -35,7 +39,7 @@ const userModel = new mongoose.Schema({
 userModel.pre("save", async function (next) {
     if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password, 12);
-    } 
+    }
     next();
 });
 

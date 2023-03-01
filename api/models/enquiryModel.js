@@ -27,7 +27,6 @@ const enquiry = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
         validator(value) {
             if (!validator.isEmail(value)) {
                 throw new Error("Not Valid Email");
@@ -44,7 +43,7 @@ const enquiry = new mongoose.Schema({
     alternateno: {
         type: Number,
     },
-    schollname: {
+    schoolname: {
         type: String
     }
     ,
