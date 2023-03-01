@@ -36,15 +36,18 @@ const enquiry = new mongoose.Schema({
     },
     collegename: {
         type: String,
-        
+
     },
     coursename: {
         type: String,
-       
     },
     alternateno: {
         type: Number,
     },
+    schollname: {
+        type: String
+    }
+    ,
     status: {
         type: String,
         enum: ["Active", "Inactive"],
