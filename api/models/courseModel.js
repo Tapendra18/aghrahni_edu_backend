@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const slug = require("mongoose-slug-generator");
+mongoose.plugin(slug);
 
-const course = new mongoose.Schema({
+const courseModel = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -18,4 +20,4 @@ const course = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model("course", course);
+module.exports = mongoose.model("course", courseModel);

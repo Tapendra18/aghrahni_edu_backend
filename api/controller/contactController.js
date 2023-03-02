@@ -32,4 +32,20 @@ liveController.courselist = async function (req, res) {
     }
 }
 
+liveController.CollegeDelete = async function (req, res) {
+    try {
+        const contact = await contactModel.findByIdAndDelete(req.params.id);
+        if (!req.params.id) {
+            return res.status(400).send();
+        }
+        res.send(contact);
+
+    } catch (err) {
+        return res.status(500).send({
+            success: false,
+            msg: err + "error in delete API"
+        })
+    }
+}
+
 module.exports = liveController;
