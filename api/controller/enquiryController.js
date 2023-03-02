@@ -17,9 +17,9 @@ liveController.enquiryAdd = async function (req, res) {
     }
 }
 
-liveController.courseList = async function (req, res) {
+liveController.enquiryList = async function (req, res) {
     try {
-        const enquiry = await enquiryModel.find();
+        const enquiry = await enquiryModel.find().sort({createdAt:-1});
         return res.status(200).send({
             success: true,
             data: enquiry

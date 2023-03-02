@@ -3,5 +3,7 @@ const router = express.Router();
 const enquiryController = require("../controller/enquiryController");
 
 router.post("/add" , enquiryController.enquiryAdd);
-router.get("/", enquiryController.courseList);
+router.get("/", enquiryController.enquiryList);
+
+
 module.exports = router;
