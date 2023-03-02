@@ -21,6 +21,10 @@ const contact = new mongoose.Schema({
         type: String,
         enum: ["Active", "Inactive"],
         default: "Active"
+    },
+    type: {
+        type: String,
+        default: "contact"
     }
 }, {
     timestamps: true

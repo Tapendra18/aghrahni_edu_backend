@@ -48,6 +48,11 @@ const enquiry = new mongoose.Schema({
         enum: ["Active", "Inactive"],
         default: "Active"
     },
+    type:{
+        type :String,
+        enum :["course" , "college"],
+        default : "college"
+    }
 
 }, {
     timestamps: true

@@ -1,5 +1,49 @@
-// const nodemailer = require("nodemailer");
-// const utility = {};
+const nodemailer = require("nodemailer");
+const utility = {};
+
+
+utility.sendMail = async (name, email, token) => {
+
+    try {
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            auth: {
+                user: 'pythondevforsure@gmail.com',
+                pass: 'idbbbcuygqhwqedx'
+            }
+        });
+
+        const mailOptions = {
+            to: req.body.email,
+            name: existingUser.name,
+            subject: 'password reset link',
+            text: `Click here to reset Password :` + link,
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.error('email not sent', error);
+            }
+            else {
+                console.log('email sent', info.response);
+            }
+        });
+
+        return res.status(200).json({
+            message: 'password reset link sent successfully',
+            email: req.body.email
+         });
+    }catch (error) {
+       console.log(error);
+       res.status(500).json({
+          message: 'Somthing went wrong',
+          email: 'req.body.email'
+       });
+    }
+   
+}
+
 
 // utility.sendMail = async (name, email, token) => {
 //     try {

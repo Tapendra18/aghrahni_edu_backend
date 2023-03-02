@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs")
 const SECRET_KEY = "NODEAPI"
 const users = require("../models/userModel");
-// const utility = require("../utility/utils");
+const utility = require("../utility/utils");
 const nodemailer = require('nodemailer');
 // const liveController = require('./collegeController');
 
@@ -103,34 +103,35 @@ exports.forgetpassword = async (req, res) => {
        const newtoken = jwt.sign(payload, secret, { expiresIn: '15m' });
        const link = `http://192.168.1.15:4000/api/v1/user/resetpassword`
        console.log(link);
+       
+       utility.sendMail();
+      //  const transporter = nodemailer.createTransport({
+      //     host: 'smtp.gmail.com',
+      //     port: 587,
+      //     auth: {
+      //        user: 'pythondevforsure@gmail.com',
+      //        pass: 'idbbbcuygqhwqedx'
+      //     }
+      //  });
+      //  const mailOptions = {
+      //     to: req.body.email,
+      //     name: existingUser.name,
+      //     subject: 'password reset link',
+      //     text: `Click here to reset Password :` + link,
+      //  };
  
-       const transporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 587,
-          auth: {
-             user: 'pythondevforsure@gmail.com',
-             pass: 'idbbbcuygqhwqedx'
-          }
-       });
-       const mailOptions = {
-          to: req.body.email,
-          name: existingUser.name,
-          subject: 'password reset link',
-          text: `Click here to reset Password :` + link,
-       };
- 
-       transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-             console.error('email not sent', error);
-          }
-          else {
-             console.log('email sent', info.response);
-          }
-       });
-       return res.status(200).json({
-          message: 'password reset link sent successfully',
-          email: req.body.email
-       });
+      //  transporter.sendMail(mailOptions, function (error, info) {
+      //     if (error) {
+      //        console.error('email not sent', error);
+      //     }
+      //     else {
+      //        console.log('email sent', info.response);
+      //     }
+      //  });
+      //  return res.status(200).json({
+      //     message: 'password reset link sent successfully',
+      //     email: req.body.email
+      //  });
  
     } catch (error) {
        console.log(error);

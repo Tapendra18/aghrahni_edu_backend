@@ -15,6 +15,10 @@ const courseModel = new mongoose.Schema({
         type: String,
         enum: ["Active", "Inactive"],
         default: "Active"
+    },
+    type: {
+        type: String,
+        default: "course"
     }
 }, {
     timestamps: true

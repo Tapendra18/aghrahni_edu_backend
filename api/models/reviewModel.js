@@ -17,6 +17,10 @@ const reviewModel = new mongoose.Schema({
         type: String,
         enum: ["Active", "Inactive"],
         default: "Active"
+    },
+    type: {
+        type: String,
+        default: "review"
     }
 }, {
     timestamps: true

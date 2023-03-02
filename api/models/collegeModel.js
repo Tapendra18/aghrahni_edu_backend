@@ -17,7 +17,7 @@ const college = new mongoose.Schema({
     },
     website: {
         type: String,
-      
+
     },
     slug: {
         type: String,
@@ -27,6 +27,10 @@ const college = new mongoose.Schema({
         type: String,
         enum: ["Active", "Inactive"],
         default: "Active"
+    },
+    type: {
+        type: String,
+        default: "college"
     }
 }, {
     timestamps: true
