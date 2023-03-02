@@ -41,16 +41,15 @@ const enquiry = new mongoose.Schema({
     },
     alternateno: {
         type: Number,
-    }
-    ,
+    } ,
     status: {
         type: String,
         enum: ["Active", "Inactive"],
         default: "Active"
     },
-    type:{
-        type :String,
-        enum :["course" , "college"],
+    type: {
+        type: String,
+        enum: ["course", "college"],
         default : "college"
     }
 

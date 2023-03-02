@@ -4,6 +4,6 @@ const enquiryController = require("../controller/enquiryController");
 
 router.post("/add" , enquiryController.enquiryAdd);
 router.get("/", enquiryController.enquiryList);
-
+// router.get("" , enquiryController.enquiryList);
 
 module.exports = router;

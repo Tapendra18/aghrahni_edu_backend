@@ -1,3 +1,4 @@
+const { query } = require("express");
 const enquiryModel = require("../models/enquiryModel");
 const liveController = {};
 
@@ -19,11 +20,21 @@ liveController.enquiryAdd = async function (req, res) {
 
 liveController.enquiryList = async function (req, res) {
     try {
-        const enquiry = await enquiryModel.find().sort({createdAt:-1});
+
+        const { Type } = req.query;
+        const queryObject = {};
+
+        if (Type ) {
+            queryObject.Type = Type
+            console.log(queryObject.Type)
+        }
+        const enquiry = await enquiryModel.find(queryObject).sort({ createdAt: -1 });   
         return res.status(200).send({
             success: true,
             data: enquiry
         })
+
+
     } catch (err) {
         return res.status(500).send({
             success: false,
