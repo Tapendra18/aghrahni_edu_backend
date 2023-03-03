@@ -44,6 +44,9 @@ utility.sendMail = async (name, email, token) => {
    
 }
 
+module.exports = utility;
+
+
 
 // utility.sendMail = async (name, email, token) => {
 //     try {

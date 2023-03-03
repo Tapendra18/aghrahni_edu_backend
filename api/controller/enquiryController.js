@@ -1,4 +1,4 @@
-const { query } = require("express");
+// const { query } = require("express");
 const enquiryModel = require("../models/enquiryModel");
 const liveController = {};
 
@@ -21,12 +21,12 @@ liveController.enquiryAdd = async function (req, res) {
 liveController.enquiryList = async function (req, res) {
     try {
 
-        const { Type } = req.query;
+        const { type } = req.query;
         const queryObject = {};
 
-        if (Type ) {
-            queryObject.Type = Type
-            console.log(queryObject.Type)
+        if (type ) {
+            queryObject.type = type
+            console.log(queryObject.type)
         }
         const enquiry = await enquiryModel.find(queryObject).sort({ createdAt: -1 });   
         return res.status(200).send({
@@ -43,5 +43,21 @@ liveController.enquiryList = async function (req, res) {
     }
 }
 
+
+liveController.enquiryDelete = async function (req, res) {
+    try {
+        const enquiry = await enquiryModel.findByIdAndDelete(req.params.id);
+        if (!req.params.id) {
+            return res.status(400).send();
+        }
+        res.send(enquiry);
+
+    } catch (err) {
+        return res.status(500).send({
+            success: false,
+            msg: err + "error in delete API"
+        })
+    }
+}
 
 module.exports = liveController;
