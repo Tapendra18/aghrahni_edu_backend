@@ -51,7 +51,7 @@ exports.userlogin = async (req, res) => {
 
             const token = jwt.sign({ email: exitinguser.email, id: exitinguser._id }, SECRET_KEY);
             res.status(201).json({ user: exitinguser, token: token });
-
+            // exitinguser.save({ user: exitinguser, token: token });
         } else {
             res.status(404).json({ error: "user not found" })
         }
@@ -120,14 +120,14 @@ exports.forgetpassword = async (req, res) => {
             text: `Dear Click here to reset Password :` + link,
         };
 
-         transporter.sendMail(mailOptions, function (error, info) {
+        transporter.sendMail(mailOptions, function (error, info) {
             if (info) {
-               console.error('email  sent', info.response);
+                console.error('email  sent', info.response);
             }
             else {
-               console.log('email not sent', error);
+                console.log('email not sent', error);
             }
-         });
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -136,3 +136,19 @@ exports.forgetpassword = async (req, res) => {
         });
     }
 };
+
+exports.resetpassword = async (req, res) => {
+    try {
+        const token = req.query.token;
+        const tokenData = await users.findOne({ token: token })
+        if (tokenData) {
+            const password = req.body.password;
+            const newpassword = await bcrypt.compare(password);
+
+        } else {
+            res.status(200).send({ success: false, msg: "this link has been expired" })
+        }
+    } catch (err) {
+        res.status(400).send({ success: false, msg: err.message })
+    }
+}
